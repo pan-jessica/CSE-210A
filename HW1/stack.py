@@ -17,5 +17,5 @@ class Stack:
     def push(self, item):
         self.stack.append(item)
 
-    def size(self):
-        return len(self.stack)
+    def isEmpty(self):
+        return self.stack == []
