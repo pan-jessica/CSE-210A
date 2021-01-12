@@ -1,2 +1,3 @@
 run:
-	python3 arith.py
+	mv arith.py arith
+	chmod u+x arith
