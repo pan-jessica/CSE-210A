@@ -15,14 +15,18 @@ I have 6 files to submit:
   - testscriptsoutput.pdf
   - myown.bats
   - log.txt
+  
+ *Make sure arith.py and Makefile are under the cse210A-asgtest/cse210A-asgtest-hw1-arith/ directory before you run the test script. The 'myown.bats' also be under the cse210A-asgtest/cse210A-asgtest-hw1-arith/tests directory.
 
 README.txt:
-  In this file, I will describe and explain the different files in my submission.
+  In this file, I will describe and explain the different files in my submission, along with any issues I had in running my script.
 
 Makefile:
   This file allows you to create the executable for my python script by using pyinstaller.
   To create the executable, do 'make'.
   To execute the python script, do './arith'
+  
+  To run the test scripts on ARITH, do ./test.sh. This should run the different test cases on ARITH.
 
 arith.py:
   This is file contains the code to the interpreter ARITH. In arith.py, the two main functions that do the interpreting of ARITH are 'parse' and 'eval'. The function 'parse' first declares the precedences of each operator by assigning it a number according to its priority.
