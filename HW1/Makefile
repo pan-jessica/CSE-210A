@@ -1,3 +1,5 @@
 run:
-	mv arith.py arith
-	chmod u+x arith
+	pyinstaller --onefile arith.py
+	cp ./dist/arith .
+	mv arith.exe arith
+	rm -r dist

@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import re
+import sys
 
 
 class Stack:
@@ -27,7 +28,7 @@ class Stack:
 
 
 def isNumber(string):
-    return bool(re.match(r'[-+]?(?:\d+(?:\.\d*)?|\.\d+)', string))
+    return bool(re.match(r'-?\d+', string))
 
 
 def parse(inputStmt):
@@ -50,12 +51,14 @@ def parse(inputStmt):
             if isNumber(t):
                 pfForm.append(t)    # put number onto the postfix list
 
-            else:                   # regulate order of postfix notation when operator is detected
+            else:
+                # regulate order of postfix notation when operator is detected
                 while (not operations.isEmpty()) and (oper[operations.peek()] >= oper[t]):
                     pfForm.append(operations.pop())
                 operations.push(t)
 
-    while (not operations.isEmpty()):   # put the rest of the operations left into postfix list
+    while (not operations.isEmpty()):
+        # put the rest of the operations left into postfix list
         pfForm.append(operations.pop())
 
     return eval(" ".join(pfForm))
@@ -66,10 +69,12 @@ def eval(pfe):
     tokens = pfe.split()
 
     for tok in tokens:
-        if isNumber(tok):       # if token is a number push it into the operation stack
+        if isNumber(tok):
+            # if token is a number push it into the operation stack
             oper.push(int(tok))
 
-        else:                   # if token is an operator, pop previous 2 numbers from stack
+        else:
+            # if token is an operator, pop previous 2 numbers from stack
             num2, num1 = oper.pop(), oper.pop()
 
             # calculate the 2 numbers popped with operator
@@ -89,10 +94,5 @@ def calc(op, num1, num2):
 
 
 if __name__ == '__main__':
-    while True:
-        smt = input("")
-
-        if smt == "q":  # to exit the program
-            break
-        else:
-            print(parse(smt))
+    for line in sys.stdin:
+        print(parse(line))
