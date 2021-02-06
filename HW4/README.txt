@@ -10,7 +10,7 @@ Homework 4 -- WHILE-SS interpreter
 
 In this assignment, we are to write an interpreter for the WHILE language and produce the small steps of each command. I've decided to use python again as my language of choice for this assignment. I'm still new to python and thought it would be fun and easier to code in python for this assignment.
 
-I have 7 files to submit:
+I have 8 files to submit:
   - README.txt
   - Makefile
   - while-ss.py
