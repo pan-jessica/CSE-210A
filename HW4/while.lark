@@ -1,0 +1,89 @@
+
+// Jessica Pan -- jeypan@ucsc.edu
+// Winter 2021 -- CSE 210A Programming Languages
+// HW4 -- WHILE-SS interpreter
+
+// I used the lark-parser library in python to create the AST of while and
+// to interpret the AST tree.
+// Links I used for this assignment that helped me a lot:
+// https://www.gitmemory.com/issue/lark-parser/lark/355/481851369
+// https://github.com/lark-parser/lark/blob/master/docs/json_tutorial.md
+// https://github.com/lark-parser/lark/tree/master/examples
+
+
+?start: statement _NEWLINE
+
+// In a statement we can have a regular statement or a composite statements
+?statement: sstatement 
+          | cstatement
+
+// composite statements: if, while
+?cstatement: (if | while | seq) (";" statement)*
+
+
+// if statement
+if: "if" ["("] cond [")"] "then" set  ["else" set]
+
+// while statement
+?while: "while" ["("] cond [")"] "do" "{" set "}"        -> cwhile 
+      | "while" ["("] cond [")"] "do" set [";"]          -> swhile
+      | "{" while "}"                                 
+?set: statement 
+     | _NEWLINE _INDENT statement+ _DEDENT
+?seq: "{" assign (";" assign)+ "}"      // seq of assigning for ss
+
+
+// Aexp, Bexp, Comm
+?sstatement: sstmt (";" statement)*
+?sstmt: (exp | skip)
+?exp: bexp | assign
+?skip: "skip"
+
+
+// Assigning variable & additional feature to WHILE
+?assign: variable ":=" exp                        -> assigning
+       | variable ":=" cond "?" cond ":" cond     -> ternary
+
+
+// Bexp
+?bexp: cond
+?cond: or ("if" or "else" cond)?
+?or: and ("∨" and)*
+?and: notcheck ("∧" notcheck)*
+?notcheck: "¬" notcheck -> not
+         | compare
+?compare: aexpr (_coper aexpr)*
+
+
+// Aexp
+?aexpr: product
+      | aexpr "+" product  -> add 
+      | aexpr "-" product  -> sub 
+!_coper: "<"|">"|"="|">="|"<="|"<>"|"!="|"in"|"not" "in"|"is"|"is" "not"
+
+?product: atom 
+     | product "*" atom  -> mul 
+     | product "/" atom  -> div
+
+?atom: VARNAME -> variable
+     | number 
+     | string+
+     | _foper atom
+     | "(" cond ")"
+     | "true"    -> true_cond
+     | "false"   -> false_cond
+!_foper: "+"|"-"
+
+
+variable: VARNAME
+number: NUMBER
+string: STRING
+
+VARNAME: /[a-zA-Z_]\w*/
+_NEWLINE: /\r?\n[\t ]*/
+STRING : /[ubf]?r?("(?!"").*?(?<!\\)(\\\\)*?"|'(?!'').*?(?<!\\)(\\\\)*?')/i
+NUMBER: /[-]?[0-9]\d*/i
+
+%ignore /[\t \f]+/  // whitespace
+%ignore /\\[\t \f]*\r?\n/   // line c
+%declare _INDENT _DEDENT
