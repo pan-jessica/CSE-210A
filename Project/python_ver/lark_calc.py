@@ -1,5 +1,6 @@
 from lark import Lark, Transformer, v_args
-
+import math
+import sys
 
 arith = """
     ?start: sum
@@ -12,8 +13,8 @@ arith = """
     ?atom: NUMBER           -> number
          | "-" atom         -> neg
          | "(" sum ")"
-
     %import common.NUMBER
+    %ignore /[\t \f]+/  // whitespace
 """
 
 @v_args(inline=True)    # Affects the signatures of the methods
@@ -26,9 +27,9 @@ if __name__ == '__main__':
     arith_parser = Lark(arith, parser='lalr', transformer=Interpret())
     interp = arith_parser.parse
     
-    while True:
-        s = input('> ')
-        if s == "q":
+    for line in sys.stdin:
+        line = line.strip()
+        if line == "q":
             break
 
-        print(interp(s), "\n")
+        print(math.trunc(interp(line)))
