@@ -17,7 +17,7 @@ load harness
 }
 
 @test "mult-5" {
-  check '0 * 2' '0'
+  check '0 * 2 * 5' '0'
 }
 
 @test "mult-6" {
