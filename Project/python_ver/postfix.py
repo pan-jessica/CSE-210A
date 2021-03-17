@@ -104,3 +104,5 @@ def calc(op, num1, num2):
 if __name__ == '__main__':
     for line in sys.stdin:
         print(parse(line))
+
+        
