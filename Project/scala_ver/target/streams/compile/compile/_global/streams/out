@@ -1,0 +1,8 @@
+[0m[[0m[33mwarn[0m] [0m[0mC:\Users\Jessica Pan\Desktop\COLLEGE_HW_ORDERS\UCSC\CSE 210A\Project\src\main\scala\Calculator\basicCalc.scala:71:34: match may not be exhaustive.[0m
+[0m[[0m[33mwarn[0m] [0m[0mIt would fail on the following input: (_, ~(_, _))[0m
+[0m[[0m[33mwarn[0m] [0m[0m    case v ~ list => (v /: list) {[0m
+[0m[[0m[33mwarn[0m] [0m[0m                                 ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m3 deprecations (since 2.13.0)[0m
+[0m[[0m[33mwarn[0m] [0m[0m2 deprecations (since 2.13.3)[0m
+[0m[[0m[33mwarn[0m] [0m[0m5 deprecations in total; re-run with -deprecation for details[0m
+[0m[[0m[33mwarn[0m] [0m[0mfour warnings found[0m

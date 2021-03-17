@@ -1,0 +1,38 @@
+[debug] > Exec(~run, None, None)
+[info] sbt server started at local:sbt-server-d71805415065fac73182
+[info] started sbt server
+[debug] > Exec(__runWatch console0, None, None)
+[debug] > Exec(sbtStashOnFailure, None, None)
+[debug] > Exec(__preWatch console0, None, None)
+[debug] > Exec(run, None, None)
+[debug] Evaluating tasks: Compile / run
+[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
+[info] compiling 2 Scala sources to C:\Users\Jessica Pan\Desktop\COLLEGE_HW_ORDERS\UCSC\CSE 210A\Project\target\scala-2.13\classes ...
+[error] C:\Users\Jessica Pan\Desktop\COLLEGE_HW_ORDERS\UCSC\CSE 210A\Project\src\main\scala\Calculator\main.scala:3:16: Value is already defined as class Value
+[error] abstract class Value {
+[error]                ^
+[error] C:\Users\Jessica Pan\Desktop\COLLEGE_HW_ORDERS\UCSC\CSE 210A\Project\src\main\scala\Calculator\main.scala:6:12: Number is already defined as case class Number
+[error] case class Number(n:Double) extends Value {
+[error]            ^
+[error] C:\Users\Jessica Pan\Desktop\COLLEGE_HW_ORDERS\UCSC\CSE 210A\Project\src\main\scala\Calculator\main.scala:9:12: Binomial is already defined as case class Binomial
+[error] case class Binomial(op: String, v1:Value, v2:Value) extends Value {
+[error]            ^
+[error] C:\Users\Jessica Pan\Desktop\COLLEGE_HW_ORDERS\UCSC\CSE 210A\Project\src\main\scala\Calculator\main.scala:17:12: Rest is already defined as case class Rest
+[error] case class Rest(op:String, v:Value)
+[error]            ^
+[error] C:\Users\Jessica Pan\Desktop\COLLEGE_HW_ORDERS\UCSC\CSE 210A\Project\src\main\scala\Calculator\main.scala:18:12: Formula is already defined as case class Formula
+[error] case class Formula(v:Value, rest:List[Rest]) extends Value {
+[error]            ^
+[error] C:\Users\Jessica Pan\Desktop\COLLEGE_HW_ORDERS\UCSC\CSE 210A\Project\src\main\scala\Calculator\main.scala:23:12: Paren is already defined as case class Paren
+[error] case class Paren(e:Value) extends Value {
+[error]            ^
+[error] C:\Users\Jessica Pan\Desktop\COLLEGE_HW_ORDERS\UCSC\CSE 210A\Project\src\main\scala\Calculator\main.scala:27:7: ArithmeticParser is already defined as class ArithmeticParser
+[error] class ArithmeticParser extends JavaTokenParsers {
+[error]       ^
+[error] 7 errors found
+[error] (Compile / compileIncremental) Compilation failed
+[error] Total time: 27 s, completed Feb 21, 2021 1:08:21 PM
+[debug] > Exec(resumeFromFailure, None, None)
+[debug] > Exec(sbtPopOnFailure, None, None)
+[debug] > Exec(__postWatch console0, None, None)
+[debug] > Exec(__waitWatch console0, None, None)
